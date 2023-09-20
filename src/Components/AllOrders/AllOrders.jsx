@@ -58,7 +58,7 @@ const AllOrders = () => {
         </h5>
 
         <div className="row">
-        {loading ? <Loader/> : allOrders.length>0 ?
+        {loading ? <Loader/> : allOrders?.length ?
         <>
         {allOrders?.map((order) => (
           <div key={order._id} className="col-12">

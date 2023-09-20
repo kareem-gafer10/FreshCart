@@ -19,7 +19,7 @@ const Wishlist = () => {
 
 
 
-const displayWishlist = wishlistProducts.length>0 ? wishlistProducts.map((wishlist) => {
+const displayWishlist = wishlistProducts?.length>0 ? wishlistProducts.map((wishlist) => {
     const { title, imageCover, _id, category, price, ratingsAverage,id } = wishlist;
 
     return (
