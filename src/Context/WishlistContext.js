@@ -8,15 +8,16 @@ const WishlistContextProvider = ({ children }) => {
   const [numOfWishlist, setNumOfWishlist] = useState(0);
   const [wishlistProducts, setWishlistProducts] = useState(null);
 
-  
-  let headers = {
-    token: localStorage.getItem("userToken"),
-  };
+ 
 
   const getWishlist = async() => {
     try {
       setLoading(true)
-      const {data} = await baseInstance.get("wishlist", { headers: headers });
+      const {data} = await baseInstance.get("wishlist", {
+        headers: {
+          token: localStorage.getItem("userToken"),
+        },
+      });
       if (data?.status === "success") {
         setNumOfWishlist(data.count)
         setWishlistProducts(data.data)
@@ -35,7 +36,11 @@ const WishlistContextProvider = ({ children }) => {
       const {data} = await baseInstance.post(
         "wishlist",
         { productId: productId },
-        { headers: headers }
+        {
+          headers: {
+            token: localStorage.getItem("userToken"),
+          },
+        }
       );
       if (data.status === "success") {
         setNumOfWishlist(data.count)
@@ -61,7 +66,9 @@ const WishlistContextProvider = ({ children }) => {
     
     try {
       const {data} = await baseInstance.delete(`wishlist/${productId}`, {
-        headers: headers,
+        headers: {
+          token: localStorage.getItem("userToken"),
+        },
       });
       if (data.status === "success") {
         setNumOfWishlist(data.count)

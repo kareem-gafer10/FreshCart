@@ -11,9 +11,7 @@ const CartContextProvider = ({children}) => {
   const [loading, setLoading] = useState(false);
 
 
-  const headers = {
-    token: localStorage.getItem("userToken"),
-  };
+
 
 
  
@@ -21,7 +19,11 @@ const CartContextProvider = ({children}) => {
     try {
       const {data} = await baseInstance.post("cart",
         { productId: productId },
-        { headers: headers }
+        {
+          headers: {
+            token: localStorage.getItem("userToken"),
+          },
+        }
       );
       if (data.status === "success") {
         setCartDetails(data.data)
@@ -45,7 +47,9 @@ const CartContextProvider = ({children}) => {
   const getCart = async () => {
     try {
       const {data} = await baseInstance.get(`cart`, {
-        headers: headers,
+        headers: {
+          token: localStorage.getItem("userToken"),
+        },
       });
       if (data.status === "success") {
 
@@ -63,7 +67,9 @@ const CartContextProvider = ({children}) => {
   const RemoveItem = async (productId) => {
     try {
       const {data} = await baseInstance.delete(`cart/${productId}`, {
-        headers: headers,
+        headers: {
+          token: localStorage.getItem("userToken"),
+        },
       });
       if (data.status) {
         setCartDetails(data.data);
@@ -91,7 +97,9 @@ const CartContextProvider = ({children}) => {
  const ClearAllProduct = async () => {
   try {
     const {data} = await baseInstance.delete(`cart/`, {
-      headers: headers,
+      headers: {
+        token: localStorage.getItem("userToken"),
+      },
     }); 
     if (data.message) {
       setCartDetails(null);
@@ -121,7 +129,11 @@ const CartContextProvider = ({children}) => {
       if(count >0){
         const {data} = await baseInstance.put(`cart/${productId}`,
         { count: count },
-        { headers: headers }
+        {
+          headers: {
+            token: localStorage.getItem("userToken"),
+          },
+        }
       );
       toast.success(data.status,{duration:2000,className:"text-success"});
       setCartDetails(data.data)
@@ -150,7 +162,11 @@ const CartContextProvider = ({children}) => {
       const {data} = await baseInstance.post(
         `orders/checkout-session/${cartDetails?._id}?url=${appUrl}`,
         { shippingAddress: shippingAddress },
-        { headers: headers }
+        {
+          headers: {
+            token: localStorage.getItem("userToken"),
+          },
+        }
       );
       if (data?.status=== "success") {
         toast.success(data.status,
@@ -167,9 +183,10 @@ const CartContextProvider = ({children}) => {
   };
 
 
-  useEffect(() => {
-    getCart();
-  }, []);
+    useEffect(() => {
+      getCart();
+    }, []);
+
 
 
   return (
