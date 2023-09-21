@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import baseInstance from "../Networking/baseInstance";
 import toast from "react-hot-toast";
 export const CartContext = createContext();
@@ -167,7 +167,9 @@ const CartContextProvider = ({children}) => {
   };
 
 
-
+  useEffect(() => {
+    getCart();
+  }, []);
 
 
   return (
