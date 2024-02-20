@@ -39,7 +39,7 @@ const Cart = () => {
         <CartDetails cartDetails={cartDetails}/>
 
       {cartDetails.products.map((product)=>(
-        <div  key={product.product._id}
+        <div  key={product._id}
         className="row align-items-center border-bottom py-2 my-3">
         <CartItems product={product}/>
       </div>

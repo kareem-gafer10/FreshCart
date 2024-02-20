@@ -5,7 +5,6 @@ import "./Cart.css"
 
 
 const CartItems = ({product}) => {
-
     const {RemoveItem,UpdateProduct } = useContext(CartContext);
 
 
