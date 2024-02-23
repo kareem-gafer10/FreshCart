@@ -1,9 +1,34 @@
 import ScrollToTop from "react-scroll-to-top";
 import { FooterData, stores } from "./Data";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 import "./Footer.css";
+import toast from "react-hot-toast";
 
 const Footer = () => {
   const date = new Date().getFullYear();
+
+  const validationSchema = Yup.object({
+    email: Yup.string()
+      .required("email is required")
+      .email("Please Enter a valid Email"),
+  });
+
+  const handelEmail = () => {
+    toast.success("success", {
+      duration: 2000,
+      className: "text-success px-4 fw-bolder",
+    });
+    formik.resetForm();
+  };
+
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+    },
+    validationSchema,
+    onSubmit: handelEmail,
+  });
 
   return (
     <>
@@ -14,21 +39,36 @@ const Footer = () => {
           <p className="text-muted">
             We will send you a link, Open it in your phone to download App
           </p>
+            <form  onSubmit={formik.handleSubmit}>
           <div className="row mb-4">
-            <div className="col-md-9">
-              <input
-                type="email"
-                placeholder="Email"
-                className="form-control "
-              />
-            </div>
+              <div className="col-md-9">
+                <input
+                  type="email"
+                  placeholder="Email"
+                  className="form-control "
+                  name="email"
+                  id="email"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.email}
+                />
+                {formik.errors.email && formik.touched.email ? (
+                  <small className="text-danger d-block mt-3">
+                    {formik.errors.email}
+                  </small>
+                ) : null}
+              </div>
 
-            <div className="col-md-3">
-              <button className="btn btn-success w-100 mt-3 mt-md-0">
-                Share App Link
-              </button>
-            </div>
+              <div className="col-md-3">
+                <button
+                  type="submit"
+                  className="btn btn-success w-100 mt-3 mt-md-0"
+                >
+                  Share App Link
+                </button>
+              </div>
           </div>
+            </form>
 
           <hr />
 
