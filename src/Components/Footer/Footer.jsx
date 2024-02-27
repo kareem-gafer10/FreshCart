@@ -9,7 +9,7 @@ const Footer = () => {
   const date = new Date().getFullYear();
 
   const validationSchema = Yup.object({
-    email: Yup.string()
+    emailShare: Yup.string()
       .required("email is required")
       .email("Please Enter a valid Email"),
   });
@@ -24,7 +24,7 @@ const Footer = () => {
 
   const formik = useFormik({
     initialValues: {
-      email: "",
+      emailShare: "",
     },
     validationSchema,
     onSubmit: handelEmail,
@@ -39,22 +39,22 @@ const Footer = () => {
           <p className="text-muted">
             We will send you a link, Open it in your phone to download App
           </p>
-            <form  onSubmit={formik.handleSubmit}>
-          <div className="row mb-4">
+          <form onSubmit={formik.handleSubmit}>
+            <div className="row mb-4">
               <div className="col-md-9">
                 <input
                   type="email"
-                  placeholder="Email"
+                  placeholder="Enter your Email"
                   className="form-control "
-                  name="email"
-                  id="email"
+                  name="emailShare"
+                  id="emailShare"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  value={formik.values.email}
+                  value={formik.values.emailShare}
                 />
-                {formik.errors.email && formik.touched.email ? (
+                {formik.errors.emailShare && formik.touched.emailShare ? (
                   <small className="text-danger d-block mt-3">
-                    {formik.errors.email}
+                    {formik.errors.emailShare}
                   </small>
                 ) : null}
               </div>
@@ -67,8 +67,8 @@ const Footer = () => {
                   Share App Link
                 </button>
               </div>
-          </div>
-            </form>
+            </div>
+          </form>
 
           <hr />
 
