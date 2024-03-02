@@ -1,5 +1,4 @@
 
-I am glad to share my React [Fresh Cart App] project.
 
 A Fresh Cart App is an e-commerce website with a Products ,Categories,Brands a shopping cart system, and a checkout process.
 
