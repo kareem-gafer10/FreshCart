@@ -2,13 +2,14 @@ import Loader from "../Loader/Loader";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import useFetch from "../../Hooks/useFetch";
+import Pagination from "../Pagination/Pagination";
 
 
 
 
 const Brands = () => {
 
-let {dataList,loading}=useFetch("brands")
+let {dataList,loading,getAllDetails,pageCount }=useFetch("brands")
 
 
 
@@ -50,7 +51,7 @@ let {dataList,loading}=useFetch("brands")
       </div>
 
       {loading? <Loader/>:displayData}
-
+      <Pagination getAllDetails={getAllDetails} pageCount={pageCount} />
       </div>
     </div>
     </>

@@ -1,22 +1,14 @@
-import React, {useState } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import useFetch from "../../Hooks/useFetch";
 import Loader from "../Loader/Loader";
 import Product from "./Product";
-import Pagination from "./Pagination";
+import Pagination from "../Pagination/Pagination";
 
 const FeaturedProducts = () => {
-  let { dataList, loading } = useFetch("products");
-
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(8);
+  let { dataList, loading,getAllDetails,pageCount } = useFetch(`products`);
 
 
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = dataList.slice(indexOfFirstItem, indexOfLastItem);
-  const handlePageChange = ({ selected }) => setCurrentPage(selected + 1);
 
 
 
@@ -41,9 +33,9 @@ const FeaturedProducts = () => {
             </div>
           </div>
 
-          {loading ? <Loader /> : currentItems.map((product) => <Product key={product._id} product={product} />)}
+          {loading ? <Loader /> : dataList.map((product) => <Product key={product._id} product={product} />)}
 
-          <Pagination pageCount={Math.ceil(dataList.length / itemsPerPage)} handlePageChange={handlePageChange} />
+          <Pagination getAllDetails={getAllDetails} pageCount={pageCount} />
         </div>
       </div>
     </>

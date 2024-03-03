@@ -2,10 +2,11 @@ import React, {useState } from "react";
 import { Helmet } from "react-helmet";
 import Loader from "../Loader/Loader";
 import useFetch from "../../Hooks/useFetch";
-import ProductsList from "./productList ";
+import ProductCard from "./ProductCard";
+import Pagination from "../Pagination/Pagination";
 
 const Products = () => {
-  let { dataList, loading } = useFetch("products");
+  let { dataList, loading,getAllDetails,pageCount } = useFetch("products");
   const [searchQuery, setSearchQuery] = useState("");
 
   const filteredData = dataList.filter((pro) =>
@@ -36,7 +37,15 @@ const Products = () => {
           </div>
         </div>
         
-        {loading ? <Loader /> : <ProductsList productList={filteredData} />}
+        {loading ? <Loader /> : 
+          <div className="row">
+          {filteredData.map((product) => (
+           <ProductCard key={product._id} product={product} />
+          ))}
+        </div>
+        }
+      <Pagination getAllDetails={getAllDetails} pageCount={pageCount} />
+        
       </div>
     </>
   );

@@ -3,10 +3,11 @@ import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import useFetch from "../../Hooks/useFetch";
 import "./Category.css";
+import Pagination from "../Pagination/Pagination";
 
 const Categories = () => {
  
-  let {dataList,loading}=useFetch("categories")
+  let {dataList,loading,getAllDetails,pageCount}=useFetch("categories")
 
 
   const allCategories=dataList.map((category)=>{
@@ -53,6 +54,9 @@ const Categories = () => {
           </div>
 
           {loading ? <Loader/>  : allCategories }
+
+      <Pagination getAllDetails={getAllDetails} pageCount={pageCount} />
+
 
         </div>
       </div>
