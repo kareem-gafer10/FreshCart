@@ -15,18 +15,7 @@ const useFetch = (url) => {
     setLoading(false);
   };
 
-  // const getPage = async (page) => {
-  //   try {
-  //     const { data } = await baseInstance.get(
-  //       `products?page=${page}&limit=${perPage}`
-  //     );
-  //     console.log(data);
-  //     setDataList(data.data);
-  //     setpageCount(data.metadata.numberOfPages);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+
 
   useEffect(() => {
     getAllDetails();
