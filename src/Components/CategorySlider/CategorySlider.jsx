@@ -1,20 +1,11 @@
-import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import { Link } from "react-router-dom";
-import baseInstance from "../../Networking/baseInstance";
 import "./CategorySlider.css";
+import useFetch from "../../Hooks/useFetch";
 
 const CategorySlider = () => {
-  const [categories, setCategories] = useState([]);
+  let {dataList }=useFetch("categories")
 
-  const getCategories = async () => {
-    let { data } = await baseInstance.get(`categories`);
-    setCategories(data.data);
-  };
-
-  useEffect(() => {
-    getCategories();
-  }, []);
 
   var settings = {
     dots: true,
@@ -49,7 +40,7 @@ const CategorySlider = () => {
     ],
   };
 
-  const allCategories = categories.map((category) => {
+  const allCategories = dataList.map((category) => {
     const { _id, image, name } = category;
     return (
       <div key={_id} className="sliderItem">
