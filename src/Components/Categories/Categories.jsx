@@ -45,7 +45,7 @@ const Categories = () => {
           <div className="col-lg-3 col-md-6">
 
             <div className="title">
-              <h3 className="text-success fw-bolder">Our Brands</h3>
+              <h3 className="text-success fw-bolder">Our Categories</h3>
               <p className="text-muted lead">
                 You can see our categories and each category includes the
                 products in it
