@@ -7,6 +7,15 @@ import sliderImage5 from "../../assets/images/slider5.jpg";
 import sliderImage6 from "../../assets/images/slider6.jpg";
 
 const MainSlider = () => {
+  const imgSlider = [
+    { id: 1, img: sliderImage1 },
+    { id: 2, img: sliderImage2 },
+    { id: 3, img: sliderImage3 },
+    { id: 4, img: sliderImage4 },
+    { id: 5, img: sliderImage5 },
+    { id: 6, img: sliderImage6 },
+  ];
+
   var settings = {
     dots: true,
     infinite: true,
@@ -42,42 +51,15 @@ const MainSlider = () => {
     <>
       <div className="container mb-5 marginTop ">
         <Slider {...settings}>
-          <img
-            src={sliderImage1}
-            alt=""
-            height={400}
-            className="w-100 rounded-5 "
-          />
-          <img
-            src={sliderImage2}
-            alt=""
-            height={400}
-            className="w-100 rounded-5 "
-          />
-          <img
-            src={sliderImage3}
-            alt=""
-            height={400}
-            className="w-100 rounded-5 "
-          />
-          <img
-            src={sliderImage4}
-            alt=""
-            height={400}
-            className="w-100 rounded-5 "
-          />
-          <img
-            src={sliderImage5}
-            alt=""
-            height={400}
-            className="w-100 rounded-5 "
-          />
-          <img
-            src={sliderImage6}
-            alt=""
-            height={400}
-            className="w-100 rounded-5 "
-          />
+          {imgSlider.map((img) => (
+            <img
+              key={img.id}
+              src={img.img}
+              alt=""
+              height={400}
+              className="w-100 rounded-5 "
+            />
+          ))}
         </Slider>
       </div>
     </>
